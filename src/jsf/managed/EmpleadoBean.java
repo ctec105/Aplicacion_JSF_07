@@ -27,6 +27,8 @@ public class EmpleadoBean {
 	
 	public TbEmpleado empleado = new TbEmpleado();
 	public TbCargo cargo = new TbCargo();
+	public String nombre;
+	
 
 	public List<TbEmpleado> getEmpleadoList() {
 		return empleadoList;
@@ -54,12 +56,27 @@ public class EmpleadoBean {
 		this.cargo = cargo;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
 	
 	public String listarEmpleados() throws Exception{
 		System.out.println("Estoy en el método listarEmpleados() - INI");
 		empleadoService = abd.getEmpleadoService();
 		empleadoList = empleadoService.listarEmpleados();
 		System.out.println("Estoy en el método listarEmpleados() - FIN");
+		return "empleadoListado";
+	}
+	
+	public String buscarEmpleado() throws Exception{
+		System.out.println("Estoy en el método buscarEmpleado() - INI");
+		empleadoService = abd.getEmpleadoService();
+		empleadoList = empleadoService.buscarEmpleado(nombre);
+		System.out.println("Estoy en el método buscarEmpleado() - FIN");
 		return "empleadoListado";
 	}
 	

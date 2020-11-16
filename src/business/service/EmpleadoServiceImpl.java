@@ -26,6 +26,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		List<TbEmpleado> lista = empleadoJPA.listarEmpleados(em);
 		return lista;
 	}
+	
+	@Override
+	public List<TbEmpleado> buscarEmpleado(String nombre) throws Exception {
+		List<TbEmpleado> lista = empleadoJPA.buscarEmpleado(em, nombre);
+		return lista;
+	}
 
 	@Override
 	public void registrarEmpleado(TbEmpleado empleado) throws Exception {

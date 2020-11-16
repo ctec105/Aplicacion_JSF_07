@@ -15,6 +15,14 @@ public class TbEmpleadoJPA {
 		List<TbEmpleado> lista = emquery.getResultList();
 		return lista;
 	}
+	
+	public List<TbEmpleado> buscarEmpleado(EntityManager em, String nombre) {
+		String query = "select e from TbEmpleado e where e.nomEmp like ?1 order by e.codEmp";
+		Query emquery = em.createQuery(query);
+		emquery.setParameter(1, "%" + nombre + "%");
+		List<TbEmpleado> lista = emquery.getResultList();
+		return lista;
+	}
 
 	public void registrarEmpleado(EntityManager em, TbEmpleado empleado) {
 		em.getTransaction().begin();

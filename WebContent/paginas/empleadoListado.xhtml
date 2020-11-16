@@ -15,7 +15,10 @@
 	           <h:outputText value="#{texto.titulo_empleados}"/>
 	           
 	           <h:form prependId="false">
-	               <p:commandButton value="#{texto.label_boton_buscar}" action="#{empleado.listarEmpleados}" update="empleados"/>
+	           	   <p:outputLabel value="#{texto.label_nombre}"/>
+	           	   <p:inputText value="#{empleado.nombre}"/>
+	               
+	               <p:commandButton value="#{texto.label_boton_buscar}" action="#{empleado.buscarEmpleado}" update="empleados"/>
 	               
 	               <p:commandButton value="#{texto.label_boton_nuevo}" action="#{empleado.inicializar}" ajax="false"/>
 	               
