@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/plantillas/plantilla.xhtml">
+    	<ui:define name="body">
+                <h:form id="formEmpleado">
+                
+                    <p:panelGrid columns="3" id="panel">
+                        <f:facet name="header">#{texto.titulo_empleado_add}</f:facet>
+                        
+                        <p:outputLabel for="nombre" value="#{texto.label_nombre}"/>
+                        <p:inputText value="#{empleado.empleado.nomEmp}" required="true" id="nombre" label="#{texto.label_nombre}">
+                            <p:ajax update="msgNombre" event="blur" />
+                        </p:inputText>
+                        <p:message id="msgNombre" for="nombre"/>
+
+                        <p:outputLabel for="apellido" value="#{texto.label_apellido}"/>
+                        <p:inputText value="#{empleado.empleado.apeEmp}" required="true" id="apellido" label="#{texto.label_apellido}">
+                            <p:ajax update="msgApellido" event="blur" />
+                        </p:inputText>   
+                        <p:message id="msgApellido" for="apellido"/>
+                        
+                        <p:outputLabel for="edad" value="#{texto.label_edad}"/>
+                         <p:inputText value="#{empleado.empleado.edaEmp}" required="true" id="edad" label="#{texto.label_edad}">
+                            <p:ajax update="msgEdad" event="blur"/>
+                        </p:inputText>   
+                        <p:message id="msgEdad" for="edad"/>
+                        
+                        <p:outputLabel for="fecIng" value="#{texto.label_fechaIngreso}" />
+                        <p:calendar value="#{empleado.empleado.fecIngEmp}" required="true"  id="fecIng" effect="fadeIn"  maxdate="today" pattern="dd/MM/yyyy" readonlyInput="true" label="#{texto.label_fechaIngreso}"></p:calendar>    
+                        <p:message id="msgFecIng" for="fecIng"/>
+                        
+                        <p:outputLabel for="area" value="#{texto.label_area}"/>
+                        <p:inputText value="#{empleado.empleado.areEmp}" required="true" id="area" label="#{texto.label_area}">
+                        	<p:ajax update="msgArea" event="blur"/>
+                        </p:inputText>
+                        <p:message id="msgArea" for="area"/>
+                       
+                        <p:outputLabel for="cargo" value="#{texto.label_cargo}"/>
+                        <p:selectOneMenu value="#{empleado.empleado.tbCargo.codCar}" id="cargo" required="true">
+                            <f:selectItem itemLabel="Select One" itemValue="" />
+                            <f:selectItems value="#{listados.cargos}"/>
+                        </p:selectOneMenu>
+                        <p:message id="msgCargo" for="cargo"/>
+                        
+                        <p:outputLabel for="casillero" value="#{texto.label_casillero}"/>
+                        <p:inputText value="#{empleado.empleado.tbCasillero.codCas}" required="true" label="#{texto.label_casillero}" id="casillero">
+                        	<p:ajax update="msgCasillero" event="blur"/>
+                        </p:inputText>
+                        <p:message id="msgCasillero" for="casillero"/>
+                        
+                        <f:facet name="footer">
+                           <p:commandButton value="#{texto.label_boton_grabar}" action="#{empleado.insertarOActualizar}" ajax="false"/>
+                           <p:commandButton value="#{texto.label_boton_retornar}" action="empleadoListado" immediate="true" ajax="false"/>
+                       </f:facet>
+                    </p:panelGrid>                        
+                </h:form>
+		</ui:define>
+	</ui:composition>  
+</h:body>
+</html>

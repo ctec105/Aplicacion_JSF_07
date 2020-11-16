@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/plantillas/plantilla.xhtml">
+		<ui:define name="body">
+               <h:form id="formEmpleado">
+                   <p:panelGrid columns="2" id="panel">
+                       <f:facet name="header">#{texto.titulo_empleado_detail}</f:facet>
+                       
+                       <p:outputLabel value="#{texto.label_nombre}"/>
+                       <h:outputText value="#{empleado.empleado.nomEmp}"/>
+
+                       <p:outputLabel value="#{texto.label_apellido}"/>
+                       <h:outputText value="#{empleado.empleado.apeEmp}" />
+                       
+                       <p:outputLabel value="#{texto.label_edad}"/>
+                       <h:outputText value="#{empleado.empleado.edaEmp}" />   
+                       
+                       <p:outputLabel value="#{texto.label_fechaIngreso}"/>
+                       <p:calendar value="#{empleado.empleado.fecIngEmp}" pattern="dd/MM/yyyy" disabled="true"></p:calendar>    
+                       
+                       <p:outputLabel value="#{texto.label_area}"/>
+                       <h:outputText value="#{empleado.empleado.areEmp}"/>
+                      
+                       <p:outputLabel value="#{texto.label_cargo}"/>
+                       <p:selectOneMenu value="#{empleado.empleado.tbCargo.codCar}" disabled="true">
+                           <f:selectItems value="#{listados.cargos}"/>
+                       </p:selectOneMenu>
+                       
+                       <p:outputLabel value="#{texto.label_casillero}"/>
+                       <h:outputText value="#{empleado.empleado.tbCasillero.desCas}"/>                        
+                       
+                       <f:facet name="footer">
+							<p:commandButton value="#{texto.label_boton_retornar}" action="empleadoListado" immediate="true" ajax="false"/>
+                       </f:facet>
+                   </p:panelGrid>                        
+               </h:form>
+		</ui:define>
+	</ui:composition>  
+</h:body>
+</html>

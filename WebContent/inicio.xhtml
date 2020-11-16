@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+</h:head>
+<h:body>
+	<ui:composition template="/plantillas/externa.xhtml">
+		<ui:define name="body">
+		
+			<h:form>
+				<h:panelGrid columns="2">
+					<h:outputText value="Idioma" />
+					<h:selectOneMenu value="#{idioma.idioma}" onchange="submit()">
+						<f:selectItem itemValue="" itemLabel="Seleccionar" />
+						<f:selectItem itemValue="en" itemLabel="English" />
+						<f:selectItem itemValue="es" itemLabel="Español" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</h:form>
+		
+			<h1>Logueo con JSF</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+					<f:facet name="header">#{texto.titulo_formulario_simple}</f:facet>
+					
+					<h:outputLabel value="#{texto.label_usuario}" />
+					<h:inputText id="id" value="#{login.usuario.nomUsu}" />
+					
+					<h:outputLabel value="#{texto.label_contrasena}" />
+					<h:inputSecret value="#{login.usuario.conUsu}" />
+					
+					<f:facet name="footer">
+						<h:messages/>
+						<h:commandButton value="#{texto.label_boton_acceder}" action="#{login.validar}" />
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+			
+			<h1>Logueo con PrimeFaces</h1>
+			<h:form>
+				<h:panelGrid columns="2">
+					<f:facet name="header">#{texto.titulo_formulario_prime}</f:facet>
+					
+					<h:outputLabel value="#{texto.label_usuario}" />
+					<p:inputText value="#{login.usuario.nomUsu}" required="true" label="#{texto.label_usuario}" />
+					
+					<h:outputLabel value="#{texto.label_contrasena}" />
+					<p:password value="#{login.usuario.conUsu}" required="true" feedback="true" promptLabel="" label="#{texto.label_contrasena}"/>
+					
+					<f:facet name="footer">
+						<p:messages id="mensajePrime" />
+						<p:commandButton value="#{texto.label_boton_acceder}" action="#{login.validar}" update="mensajePrime" ajax="true"/>
+					</f:facet>
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

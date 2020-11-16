@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+ <h:head>
+ </h:head>
+ <h:body>
+ 	<ui:composition template="/plantillas/plantilla.xhtml">
+    	<ui:define name="body">
+	        <p:panelGrid columns="1" id="panel" styleClass="ui-panelgrid">
+	           <h:outputText value="#{texto.titulo_empleados}"/>
+	           
+	           <h:form prependId="false">
+	               <p:commandButton value="#{texto.label_boton_buscar}" action="#{empleado.listarEmpleados}" update="empleados"/>
+	               
+	               <p:commandButton value="#{texto.label_boton_nuevo}" action="#{empleado.inicializar}" ajax="false"/>
+	               
+	               <p:separator/>
+	               
+	               <p:dataTable id="empleados" value="#{empleado.empleadoList}" var="emp" rowKey="#{emp.codEmp}">
+	                  <f:facet name="header">Principales Datos</f:facet>
+	
+	                  <p:column headerText="#{texto.label_codigo}">#{emp.codEmp}</p:column>
+	                  <p:column headerText="#{texto.label_nombre_completo}">#{emp.nombreCompleto}</p:column>
+	                  <p:column>
+	                       <h:commandLink action="#{empleado.inicializar}" value="#{texto.label_boton_actualizar}">
+	                           <f:param name="codigo" value="#{emp.codEmp}"/>
+	                       </h:commandLink>
+	                  </p:column>  
+	                  <p:column>
+	                       <h:commandLink action="#{empleado.eliminarEmpleado}" value="#{texto.label_boton_eliminar}">
+	                           <f:param name="codigo" value="#{emp.codEmp}"/>
+	                       </h:commandLink>
+	                  </p:column>
+	                  <p:column>
+	                       <h:commandLink action="#{empleado.verDetalle}" value="#{texto.label_boton_detalle}">
+	                           <f:param name="codigo" value="#{emp.codEmp}"/>
+	                       </h:commandLink>
+	                   </p:column>
+	              </p:dataTable>
+	           </h:form>
+	       </p:panelGrid>  
+		</ui:define>
+	</ui:composition>  
+</h:body>
+</html>
